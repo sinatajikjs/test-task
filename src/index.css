@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .textField__input {
+    @apply w-full py-3 px-4 rounded-xl bg-gray-100 text-gray-900 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-blue-400 focus:outline-none focus:border-blue-400 focus:shadow-input-focus focus:bg-white;
+  }
+  .checkBox__input{
+    @apply w-8 h-8;
+  }
+}
