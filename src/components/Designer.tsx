@@ -15,10 +15,19 @@ export default function Designer({
         return item.id === id ? { ...item, value: e.target.value } : item;
       });
       setElements(newElements);
+      setSelectedElem((prev) =>
+        prev ? { ...prev, value: e.target.value } : prev
+      );
     };
 
-  const handleClick = (element: IElement) => () => {
+  const handleClick = (element: IElement) => (e: any) => {
+    if (e.target.tagName === "BUTTON") return;
     setSelectedElem(element);
+  };
+
+  const handleDelete = (id: string) => () => {
+    setElements((prev) => prev.filter((elem) => elem.id !== id));
+    setSelectedElem(null);
   };
 
   return (
@@ -32,7 +41,7 @@ export default function Designer({
             <div
               key={element.id}
               onClick={handleClick(element)}
-              className="flex gap-2 items-center w-max"
+              className="flex gap-4 items-center w-max"
             >
               <label className="text-lg" htmlFor={element.id}>
                 {element.label}
@@ -53,6 +62,12 @@ export default function Designer({
                   onChange={handleChange(element.id)}
                 />
               )}
+              <button
+                className="text-red-600 text-2xl"
+                onClick={handleDelete(element.id)}
+              >
+                x
+              </button>
             </div>
           );
         })}

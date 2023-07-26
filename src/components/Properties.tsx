@@ -83,7 +83,7 @@ export default function Properties({
                   {tKey.value === "required" && selectedElem ? (
                     <button
                       onClick={handleToggle}
-                      className="px-2 py-1 bg-blue-600 text-white rounded-xl"
+                      className="px-2 mx-1 bg-blue-600 text-white rounded-xl"
                     >
                       {selectedElem ? String(selectedElem.required) : ""}
                     </button>
