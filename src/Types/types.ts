@@ -9,4 +9,7 @@ interface IElement {
   type: string;
   id: string;
   className: string;
+  name: string;
+  required: boolean;
+  value: string;
 }

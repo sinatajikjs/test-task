@@ -8,11 +8,21 @@ const listElements = [
 
 interface IProps {
   setElements: React.Dispatch<React.SetStateAction<IElement[]>>;
+  setSelectedElem: React.Dispatch<React.SetStateAction<IElement | null>>;
 }
 
-export default function SideBar({ setElements }: IProps) {
-  const handleClick = (element: IListElement) => () => {
-    setElements((prev) => [...prev, { ...element, id: String(Date.now()) }]);
+export default function SideBar({ setElements, setSelectedElem }: IProps) {
+  const handleClick = (listElement: IListElement) => () => {
+    const element = {
+      ...listElement,
+      id: String(Date.now()),
+      name: "",
+      value: "",
+      required: true,
+    };
+
+    setElements((prev) => [...prev, element]);
+    setSelectedElem(element);
   };
 
   return (
@@ -24,6 +34,7 @@ export default function SideBar({ setElements }: IProps) {
         {listElements.map((element) => {
           return (
             <li
+              key={element.type}
               onClick={handleClick(element)}
               className="px-4 py-2 text-xl border-b border-gray-400 cursor-pointer hover:bg-gray-200 transition"
             >
